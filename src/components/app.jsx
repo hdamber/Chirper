@@ -34,9 +34,13 @@ class App extends Component {
     this.setState({ chirpMessage: e.target.value });
   }
 
-  submitChirp(e) {
-    this.setState({});
-}
+  handleClick() {
+        const newChirp = {
+            name: this.state.chirpName,
+            message: this.state.chirpMessage
+        }
+        this.setState({ chirps: [...this.state.chirps, newChirp] });
+    }
 
 
   render() {
@@ -45,7 +49,7 @@ class App extends Component {
         <div>
             <input type="text" onChange={(e) => this.handleChirpName(e)}/>
             <input type="text" onChange={(e) => this.handleChirpMessage(e)}/>
-            <button onClick={this.handleClick}>Submit</button>
+            <button onClick={() => this.handleClick()}>Add Chirp</button>
         </div>
         {this.state.chirps.map((chirp, id) => {
           return (
